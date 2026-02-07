@@ -28,9 +28,13 @@
 <body>
 
     <div id="root">
-
+        <ul>
+            <li v-for="item in shopList" v-text="item"></li> 
+        </ul>
         
-
+        <input id="inputItem" type="text" v-model="newItem">
+        
+        <button id="btn" v-on:click="addItem">Add item</button>
     </div>
 
     <script>
@@ -39,9 +43,18 @@
             el: '#root',
 
             data: {
-                
+                shopList: ['Salad', 'Eggs', 'Apples', 'Chicken'],
+                newItem: ''
+            },
+            methods: {
+                addItem() {
+                    if (this.newItem.trim()) {
+                        this.shopList.push(this.newItem);
+                        this.newItem = '';
+                    }
+                }
             }
-        })
+        });
     </script>
     
 </body>
